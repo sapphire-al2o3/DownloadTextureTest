@@ -24,31 +24,31 @@ public class DownloadTextureTest : MonoBehaviour
         var rq = UnityWebRequestTexture.GetTexture(url, true);
         yield return rq.SendWebRequest();
 
-		Profiler.BeginSample("////// UnityWebRequest");
+        Profiler.BeginSample("////// UnityWebRequest");
         Texture2D tex = DownloadHandlerTexture.GetContent(rq);
-		Profiler.EndSample();
+        Profiler.EndSample();
 
         Debug.Log($"WebRequest {tex.mipmapCount}");
         Debug.Log(tex.format);
-		Debug.Log(Time.frameCount);
-        
+        Debug.Log(Time.frameCount);
+
         sp0.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0));
     }
 
-	IEnumerator DownloadTextureByWWW(string url)
-	{
-		var www = new WWW(url);
-		yield return www;
+    IEnumerator DownloadTextureByWWW(string url)
+    {
+        var www = new WWW(url);
+        yield return www;
 
-		Profiler.BeginSample("////// WWW");
-		Texture2D tex = www.textureNonReadable;
-		Profiler.EndSample();
+        Profiler.BeginSample("////// WWW");
+        Texture2D tex = www.textureNonReadable;
+        Profiler.EndSample();
 
-		Debug.Log($"WWW {tex.mipmapCount}");
-		Debug.Log(tex.format);
-		Debug.Log(Time.frameCount);
+        Debug.Log($"WWW {tex.mipmapCount}");
+        Debug.Log(tex.format);
+        Debug.Log(Time.frameCount);
 
-		sp1.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0));
+        sp1.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0, 0));
     }
 
     void LoadImage(string path)
@@ -70,5 +70,5 @@ public class DownloadTextureTest : MonoBehaviour
 
         LoadImage(path);
     }
-    
+
 }
